@@ -27,6 +27,11 @@ app.get('/tweets', (req, res) => {
 
     const reverse_list = list.reverse()
 
+    if(reverse_list<10){
+        res.status(200).send(reverse_list.slice(0,reverse_list.length))
+        return
+    }
+
     res.status(200).send(reverse_list.slice(0,10))
 })
 
@@ -46,7 +51,7 @@ app.post('/tweets', (req, res) => {
     const {username, tweet} = req.body
 
     if(!username || !tweet){
-        res.status(400).send("UNAUTHORIZED")
+        res.status(200).send("UNAUTHORIZED")
         return
     }
 
