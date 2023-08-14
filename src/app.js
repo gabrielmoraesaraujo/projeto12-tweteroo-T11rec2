@@ -1,4 +1,4 @@
-import express from 'express'
+import express, { response } from 'express'
 import cors from 'cors'
 
 const app = express()
@@ -28,7 +28,7 @@ app.get('/tweets', (req, res) => {
     const reverse_list = list.reverse()
 
     if(reverse_list<10){
-        res.status(200).send(reverse_list.slice(0,reverse_list.length))
+        res.status(201).send(reverse_list.slice(0,reverse_list.length))
         return
     }
 
@@ -51,7 +51,7 @@ app.post('/tweets', (req, res) => {
     const {username, tweet} = req.body
 
     if(!username || !tweet){
-        res.status(200).send("UNAUTHORIZED")
+        response.status(400).send("UNAUTHORIZED")
         return
     }
 
